@@ -1,0 +1,16 @@
+{
+    "experiment_name": "All out",
+    "date": "2024-04-11",
+    "supervisor": {
+        "first_name": "Rudi",
+        "last_name": "Schwitzer",
+        "age": 55,
+        "estimate_max_hr": 171
+    },
+    "subject": {
+        "first_name": "Rudi",
+        "last_name": "Schwitzer",
+        "age": 55,
+        "estimate_max_hr": 171
+    }
+}
