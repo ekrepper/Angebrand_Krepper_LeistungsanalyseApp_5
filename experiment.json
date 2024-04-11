@@ -2,15 +2,15 @@
     "experiment_name": "All out",
     "date": "2024-04-11",
     "supervisor": {
-        "first_name": "Rudi",
-        "last_name": "Schwitzer",
-        "age": 55,
-        "estimate_max_hr": 171
+        "first_name": "Henri",
+        "last_name": "Larsson",
+        "age": 45,
+        "estimate_max_hr": 182
     },
     "subject": {
-        "first_name": "Rudi",
-        "last_name": "Schwitzer",
-        "age": 55,
-        "estimate_max_hr": 171
+        "first_name": "Maxima",
+        "last_name": "Eberharter",
+        "age": 21,
+        "estimate_max_hr": 205
     }
 }
