@@ -1,3 +1,4 @@
+#code von Aufgabe 3 in my_functions.py übernommen
 def estimate_max_hr(age_years : int , sex : str) -> int:
   """
   See https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4124545/ for different formulas
@@ -11,6 +12,7 @@ def estimate_max_hr(age_years : int , sex : str) -> int:
     max_hr_bpm  = input("Enter maximum heart rate:")
   return int(max_hr_bpm)
 
+# Person erstellen
 def build_person(first_name, last_name, sex, age) -> dict:
     """Returns a dictionary of information about a supervisor or subject."""
     dict = { "first_name" : first_name,
@@ -19,6 +21,7 @@ def build_person(first_name, last_name, sex, age) -> dict:
              "estimate_max_hr" : estimate_max_hr(age,sex)}
     return dict
 
+# Experiment erstellen
 def build_experiment(experiment_name, date, supervisor, subject) -> dict:
     """Returns a dictionary of information about an experiment."""
     dict = {"experiment_name" : experiment_name,
