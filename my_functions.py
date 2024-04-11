@@ -1,4 +1,4 @@
-#code von Aufgabe 3 in my_functions.py übernommen
+# Code von Aufgabe 3 in my_functions.py übernommen
 def estimate_max_hr(age_years : int , sex : str) -> int:
   """
   See https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4124545/ for different formulas
