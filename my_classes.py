@@ -32,3 +32,17 @@ class Experiment():
         with open(filename, 'w') as file:
             json.dump(self.__dict__, file)
 
+    
+# Erstelle eine Instanz der Person-Klasse
+person = Person("Greta", "Angebrand", 23, "female")
+
+# Rufe die save()-Methode der Person-Instanz auf und speichere sie als JSON-Datei
+person.save("person.json")
+
+# Erstelle eine Instanz der Experiment-Klasse
+experiment = Experiment("My Experiment", "2024-04-16", "Elisabeth Krepper", "Greta Angebrand")
+
+# Rufe die save()-Methode der Experiment-Instanz auf und speichere sie als JSON-Datei
+experiment.save("experiment.json")
+
+

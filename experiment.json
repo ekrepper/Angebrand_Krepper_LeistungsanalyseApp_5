@@ -1,16 +1,1 @@
-{
-    "experiment_name": "Experiment 1",
-    "date": "2024-04-16",
-    "supervisor": {
-        "first_name": "Max",
-        "last_name": "Mustermann",
-        "age": 44,
-        "estimate_max_hr": 183
-    },
-    "subject": {
-        "first_name": "Pauline",
-        "last_name": "Musterfrau",
-        "age": 64,
-        "estimate_max_hr": 162
-    }
-}
+{"experiment_name": "My Experiment", "date": "2024-04-16", "supervisor": "Elisabeth Krepper", "subject": "Greta Angebrand"}
