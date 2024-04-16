@@ -17,7 +17,8 @@ class Subject(Person):
         super().__init__(first_name, last_name)
         # Weitere für die Kindklasse spezielle Attribute können dannach erstellt werden
         self.heart_rate = heart_rate
-        self.__birthdate = birthdate
+        # Das Attribut __birth_date ist privat und kann nur innerhalb der Klasse verwendet werden
+        self.__birth_date = birthdate
         self.sex = sex
 
     def estimate_max_hr(self):
@@ -33,9 +34,9 @@ class Subject(Person):
 
     def _calculate_age(self):
         # Berechne das Alter basierend auf dem Geburtsdatum
-        birth_date = datetime.strptime(self._birth_date, "%Y-%m-%d")
+        __birth_date = datetime.strptime(self._birth_date, "%Y-%m-%d")
         today = datetime.today()
-        age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+        age = today.year - __birth_date.year - ((today.month, today.day) < (__birth_date.month, __birth_date.day))
         return age
 
     def estimate_max_hr(self):
