@@ -8,10 +8,10 @@ class Person():
         self.sex = sex
 
     def estimate_max_hr(self):
-        if sex == "male":
-            max_hr_bpm =  223 - 0.9 * age_years
-        elif sex == "female":
-            max_hr_bpm = 226 - 1.0 *  age_years
+        if self.sex == "male":
+            max_hr_bpm =  223 - 0.9 * self.age
+        elif self.sex == "female":
+            max_hr_bpm = 226 - 1.0 *  self.age
         else:
             max_hr_bpm  = input("Enter maximum heart rate:")
         return int(max_hr_bpm)
