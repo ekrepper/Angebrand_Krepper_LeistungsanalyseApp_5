@@ -1,21 +1,57 @@
 import json
+from datetime import datetime
 
 class Person():
-    def __init__(self, first_name, last_name, age, sex):
+    def __init__(self, first_name, last_name):
         self.first_name = first_name
         self.last_name = last_name
-        self.age = age
+
+    def save(self, filename):
+        with open(filename, 'w') as file:
+            json.dump(self.__dict__, file)
+
+# Der Kind-Klasse wird die Elernklasse in Klammern übergeben
+class Subject(Person):
+    def __init__(self, first_name, last_name, heart_rate, birthdate, sex):
+        # Die Funktion super() zeigt Python an, dass die __init__() aus der Elernklasse aufgerufen werden soll
+        super().__init__(first_name, last_name)
+        # Weitere für die Kindklasse spezielle Attribute können dannach erstellt werden
+        self.heart_rate = heart_rate
+        self.__birthdate = birthdate
         self.sex = sex
 
     def estimate_max_hr(self):
+        # Berechne das Alter basierend auf dem Geburtsdatum
+        age = self._calculate_age()
+        if self._sex == "male":
+            max_hr_bpm = 223 - 0.9 * age
+        elif self._sex == "female":
+            max_hr_bpm = 226 - 1.0 * age
+        else:
+            max_hr_bpm = int(input("Enter maximum heart rate:"))
+        return int(max_hr_bpm)
+
+    def _calculate_age(self):
+        # Berechne das Alter basierend auf dem Geburtsdatum
+        birth_date = datetime.strptime(self._birth_date, "%Y-%m-%d")
+        today = datetime.today()
+        age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+        return age
+
+    def estimate_max_hr(self):
         if self.sex == "male":
-            max_hr_bpm =  223 - 0.9 * self.age
+            max_hr_bpm =  223 - 0.9 * self._calculate_age
         elif self.sex == "female":
-            max_hr_bpm = 226 - 1.0 *  self.age
+            max_hr_bpm = 226 - 1.0 *  self._calculate_age
         else:
             max_hr_bpm  = input("Enter maximum heart rate:")
         return int(max_hr_bpm)
-        
+
+    
+class Examiner(Person):
+    def __init__(self, first_name, last_name, ID):
+        super().__init__(first_name, last_name)
+        self.ID = ID
 
     def save(self, filename):
         with open(filename, 'w') as file:
@@ -32,17 +68,12 @@ class Experiment():
         with open(filename, 'w') as file:
             json.dump(self.__dict__, file)
 
-    
-# Erstelle eine Instanz der Person-Klasse
-person = Person("Greta", "Angebrand", 23, "female")
+# Beispiel einer Person
+subject = Subject("Max", "Mustermann", 75, "1990-01-01", "male")
+examiner = Examiner("Maria", "Musterfrau", "123456")
 
-# Rufe die save()-Methode der Person-Instanz auf und speichere sie als JSON-Datei
-person.save("person.json")
-
-# Erstelle eine Instanz der Experiment-Klasse
-experiment = Experiment("My Experiment", "2024-04-16", "Elisabeth Krepper", "Greta Angebrand")
-
-# Rufe die save()-Methode der Experiment-Instanz auf und speichere sie als JSON-Datei
-experiment.save("experiment.json")
+# Speichere die Personen in JSON-Dateien
+subject.save("subject.json")
+examiner.save("examiner.json")
 
 
