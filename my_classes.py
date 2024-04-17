@@ -2,40 +2,49 @@ import json
 from datetime import datetime
 
 class Person():
-    def __init__(self, first_name, last_name, birthdate):
+    def __init__(self, first_name, last_name, birthdate=None, sex=None):
         self.first_name = first_name
         self.last_name = last_name
-        self.__birthdate = birthdate
+        self.birthdate = birthdate
+        self.sex = sex
+        if birthdate and sex:
+            self.heart_rate = self.estimate_max_hr()
+        else:
+            self.heart_rate = None
 
     def save(self, filename):
         with open(filename, 'w') as file:
             json.dump(self.__dict__, file)
 
     def get_age(self):
-        birth_date = datetime.strptime(self.__birthdate, "%Y-%m-%d")
-        today = datetime.today()
-        age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
-        return age
-
-class Subject(Person):
-    def __init__(self, first_name, last_name, birthdate, heart_rate, sex):
-        super().__init__(first_name, last_name, birthdate)
-        self.heart_rate = heart_rate
-        self.sex = sex
+        if self.birthdate:
+            birth_date = datetime.strptime(self.birthdate, "%Y-%m-%d")
+            today = datetime.today()
+            age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+            return age
+        else:
+            return None
 
     def estimate_max_hr(self):
-        age = self.get_age()
-        if self.sex == "male":
-            max_hr_bpm = 223 - 0.9 * age
-        elif self.sex == "female":
-            max_hr_bpm = 226 - 1.0 * age
+        if self.birthdate and self.sex:
+            age = self.get_age()
+            if self.sex == "male":
+                max_hr_bpm = int(223 - 0.9 * age)
+            elif self.sex == "female":
+                max_hr_bpm = int(226 - 1.0 * age)
+            else:
+                max_hr_bpm = int(input("Enter maximum heart rate:"))
+            return max_hr_bpm
         else:
-            max_hr_bpm = int(input("Enter maximum heart rate:"))
-        return int(max_hr_bpm)
+            return None
+
+class Subject(Person):
+    def __init__(self, first_name, last_name, birthdate, sex):
+        super().__init__(first_name, last_name, birthdate, sex)
 
 class Examiner(Person):
-    def __init__(self, first_name, last_name, birthdate, ID):
-        super().__init__(first_name, last_name, birthdate)
+    def __init__(self, first_name, last_name, ID):
+        super().__init__(first_name, last_name)
         self.ID = ID
 
 class Experiment():
@@ -50,8 +59,8 @@ class Experiment():
             json.dump(self.__dict__, file)
 
 # Beispiel einer Person
-subject = Subject("Max", "Mustermann", "1990-01-01", 180, "male")
-examiner = Examiner("Maria", "Musterfrau", "1985-05-15", "123456")
+subject = Subject("Max", "Mustermann", "1990-01-01", "male")
+examiner = Examiner("Maria", "Musterfrau", "123456")
 
 # Speichere die Personen in JSON-Dateien
 subject.save("subject.json")
