@@ -5,7 +5,7 @@ class Person():
     def __init__(self, first_name, last_name, birthdate=None, sex=None):
         self.first_name = first_name
         self.last_name = last_name
-        self.birthdate = birthdate
+        self.__birthdate = birthdate  # Geburtsdatum als privates Attribut
         self.sex = sex
         if birthdate and sex:
             self.heart_rate = self.estimate_max_hr()
@@ -13,12 +13,14 @@ class Person():
             self.heart_rate = None
 
     def save(self, filename):
+        # Nur öffentliche Attribute speichern
+        data = {"first_name": self.first_name, "last_name": self.last_name, "sex":self.sex, "heart_rate": self.heart_rate}
         with open(filename, 'w') as file:
-            json.dump(self.__dict__, file)
+            json.dump(data, file)
 
     def get_age(self):
-        if self.birthdate:
-            birth_date = datetime.strptime(self.birthdate, "%Y-%m-%d")
+        if self.__birthdate:
+            birth_date = datetime.strptime(self.__birthdate, "%Y-%m-%d")
             today = datetime.today()
             age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
             return age
@@ -26,7 +28,7 @@ class Person():
             return None
 
     def estimate_max_hr(self):
-        if self.birthdate and self.sex:
+        if self.__birthdate and self.sex:
             age = self.get_age()
             if self.sex == "male":
                 max_hr_bpm = int(223 - 0.9 * age)
@@ -47,6 +49,12 @@ class Examiner(Person):
         super().__init__(first_name, last_name)
         self.ID = ID
 
+    # Überschreibe die save-Methode, um nur öffentliche Attribute zu speichern
+    def save(self, filename):
+        data = {"first_name": self.first_name, "last_name": self.last_name, "ID": self.ID}
+        with open(filename, 'w') as file:
+            json.dump(data, file)
+
 class Experiment():
     def __init__(self, experiment_name, date, supervisor, subject):
         self.experiment_name = experiment_name
@@ -60,6 +68,7 @@ class Experiment():
 
 # Beispiel einer Person
 subject = Subject("Max", "Mustermann", "1990-01-01", "male")
+
 examiner = Examiner("Maria", "Musterfrau", "123456")
 
 # Speichere die Personen in JSON-Dateien
