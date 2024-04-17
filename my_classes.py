@@ -2,24 +2,24 @@ import json
 from datetime import datetime
 
 class Person():
-    def __init__(self, first_name, last_name, birthdate):
+    def __init__(self, first_name, last_name):
         self.first_name = first_name
         self.last_name = last_name
-        self.__birthdate = birthdate
 
     def save(self, filename):
         with open(filename, 'w') as file:
             json.dump(self.__dict__, file)
 
     def get_age(self):
-        birth_date = datetime.strptime(self.__birthdate, "%Y-%m-%d")
+        __birthdate = datetime.strptime(self.__birthdate, "%Y-%m-%d")
         today = datetime.today()
-        age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+        age = today.year - __birthdate.year - ((today.month, today.day) < (__birthdate.month, __birthdate.day))
         return age
 
 class Subject(Person):
     def __init__(self, first_name, last_name, birthdate, heart_rate, sex):
-        super().__init__(first_name, last_name, birthdate)
+        super().__init__(first_name, last_name)
+        self.__birthdate = birthdate
         self.heart_rate = heart_rate
         self.sex = sex
 
@@ -34,8 +34,8 @@ class Subject(Person):
         return int(max_hr_bpm)
 
 class Examiner(Person):
-    def __init__(self, first_name, last_name, birthdate, ID):
-        super().__init__(first_name, last_name, birthdate)
+    def __init__(self, first_name, last_name, ID):
+        super().__init__(first_name, last_name)
         self.ID = ID
 
 class Experiment():
@@ -51,7 +51,7 @@ class Experiment():
 
 # Beispiel einer Person
 subject = Subject("Max", "Mustermann", "1990-01-01", 180, "male")
-examiner = Examiner("Maria", "Musterfrau", "1985-05-15", "123456")
+examiner = Examiner("Maria", "Musterfrau", "123456")
 
 # Speichere die Personen in JSON-Dateien
 subject.save("subject.json")
