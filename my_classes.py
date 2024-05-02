@@ -41,18 +41,22 @@ class Person():
         else:
             return None
     
-#i want to create a method to generate a new person and send it to the API server http://127.0.0.1:5000 using a POST request
-    @classmethod # Decorator to define a class method 
-    def create_person(cls, first_name):
-        person = cls(first_name)
-        data = {"first_name": person.first_name}
-        data_json = json.dumps(data)
-        url = "http://127.0.0.1:5000"
+@classmethod
+def create_person(cls, first_name):
+    person = cls(first_name)
+    data = {"first_name": person.first_name}
+    data_json = json.dumps(data)
+    url = "http://localhost:5000/person/"  # Die URL für das Erstellen einer neuen Person
+    try:
         response = requests.post(url, data=data_json)
-        return response
-    
+        if response.status_code == 200:
+            print("Person successfully created:", response.json())
+        else:
+                print("Failed to create person:", response.text)
+    except requests.exceptions.RequestException as e:
+        print("Error:", e)
+	
     create_person("Max")
-    
   
    
     
