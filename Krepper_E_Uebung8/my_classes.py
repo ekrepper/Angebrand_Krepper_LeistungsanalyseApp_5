@@ -61,9 +61,6 @@ class Person():
             with open(filename, 'w') as file:
                 json.dump(data, file, indent=2)
 
-        # Füge den neuen Namen zur JSON-Datei hinzu
-        add_name_to_json("data.json", first_name)
-
         # Erstelle die Person und sende sie an die API
         person = cls(first_name)
         data = {"first_name": person.first_name}
