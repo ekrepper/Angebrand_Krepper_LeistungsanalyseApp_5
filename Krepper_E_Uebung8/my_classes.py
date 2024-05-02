@@ -43,8 +43,8 @@ class Person():
     
 
     @classmethod
-    def put(cls, first_name):
-
+    def put(cls):
+        new_name = input("Geben Sie den Namen der neuen Person ein:")
         def add_name_to_json(filename, new_name):
             try:
                 # Versuche, die vorhandenen Daten aus der JSON-Datei zu lesen
@@ -62,7 +62,7 @@ class Person():
                 json.dump(data, file, indent=2)
 
         # Erstelle die Person und sende sie an die API
-        person = cls(first_name)
+        person = cls(new_name)
         data = {"name": person.first_name}
         data_json = json.dumps(data)
         url = "http://localhost:5000/person/"  # Die URL für das Erstellen einer neuen Person
@@ -75,7 +75,7 @@ class Person():
         except requests.exceptions.RequestException as e:
             print("Error:", e)
 
-Person.put("Elisabeth")
+Person.put()
 
     
 
