@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import requests
 
 class Person():
     def __init__(self, first_name, last_name, birthdate=None, sex=None):
@@ -39,6 +40,22 @@ class Person():
             return max_hr_bpm
         else:
             return None
+    
+#i want to create a method to generate a new person and send it to the API server http://127.0.0.1:5000 using a POST request
+    @classmethod # Decorator to define a class method 
+    def create_person(cls, first_name):
+        person = cls(first_name)
+        data = {"first_name": person.first_name}
+        data_json = json.dumps(data)
+        url = "http://127.0.0.1:5000"
+        response = requests.post(url, data=data_json)
+        return response
+    
+    create_person("Max")
+    
+  
+   
+    
 
 class Subject(Person):
     def __init__(self, first_name, last_name, birthdate, sex):
