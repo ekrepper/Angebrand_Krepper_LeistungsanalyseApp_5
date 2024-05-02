@@ -63,7 +63,7 @@ class Person():
 
         # Erstelle die Person und sende sie an die API
         person = cls(first_name)
-        data = {"first_name": person.first_name}
+        data = {"name": person.first_name}
         data_json = json.dumps(data)
         url = "http://localhost:5000/person/"  # Die URL für das Erstellen einer neuen Person
         try:
@@ -75,8 +75,7 @@ class Person():
         except requests.exceptions.RequestException as e:
             print("Error:", e)
 
-Person.put("Max")	
-Person.put("Maria")
+Person.put("Elisabeth")
 
     
 
