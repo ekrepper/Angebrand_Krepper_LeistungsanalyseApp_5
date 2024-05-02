@@ -110,7 +110,7 @@ class Subject(Person):
         try:
             response = requests.put("http://127.0.0.1:5000/person/create", json=data)
             if response.status_code == 200:
-                print("E-Mail erfolgreich aktualisiert:", response.json())
+                print("E-Mail erfolgreich aktualisiert")
             else:
                 print("Fehler beim Aktualisieren der E-Mail-Adresse auf dem Server:", response.text)
         except requests.exceptions.RequestException as e:
