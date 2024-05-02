@@ -1,9 +1,5 @@
 [
   {
-    "name": "John",
-    "test_result": "julian@mail.at"
-  },
-  {
     "name": "Julian",
     "email": "julian@mail.at"
   },
@@ -11,10 +7,7 @@
     "name": "Timmy",
     "email": "timmy2@mail.at"
   },
-  {
-    "name": "Timmy",
-    "email": "timmy2@mail.at"
-  },
+
   {
     "name": "Frank",
     "email": "Frank@mail.at"
@@ -26,12 +19,7 @@
   {
     "name": "Frankie"
   },
-  {
-    "name": "Frankie"
-  },
-  {
-    "name": "Frankie"
-  },
+
   {
     "name": "TestName",
     "email": "TestName@mail.at"

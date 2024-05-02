@@ -80,13 +80,18 @@ Person.put()
     
 
 class Subject(Person):
-    def __init__(self, first_name, last_name, birthdate, sex):
-        super().__init__(first_name, last_name, birthdate, sex)
+    def __init__(self, first_name, last_name, birthdate, sex, email=None):
+        super().__init__(first_name, last_name, birthdate, sex, email)
+        self.email = email
+
+    def update_email(self, new_email):
+        hjk
 
 class Examiner(Person):
-    def __init__(self, first_name, last_name, ID):
+    def __init__(self, first_name, last_name, ID, email=None):
         super().__init__(first_name, last_name)
         self.ID = ID
+        self.email = email
 
     # Überschreibe die save-Methode, um nur öffentliche Attribute zu speichern
     def save(self, filename):
