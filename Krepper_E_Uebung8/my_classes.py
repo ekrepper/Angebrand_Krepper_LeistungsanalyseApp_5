@@ -3,7 +3,7 @@ from datetime import datetime
 import requests
 
 class Person():
-    def __init__(self, first_name, last_name, birthdate=None, sex=None):
+    def __init__(self, first_name, last_name=None, birthdate=None, sex=None):
         self.first_name = first_name
         self.last_name = last_name
         self.__birthdate = birthdate  # Geburtsdatum als privates Attribut
@@ -41,46 +41,46 @@ class Person():
         else:
             return None
     
-@classmethod
-def create_person(cls, first_name):
-    import json
 
-    def add_name_to_json(filename, new_name):
+    @classmethod
+    def put(cls, first_name):
+
+        def add_name_to_json(filename, new_name):
+            try:
+                # Versuche, die vorhandenen Daten aus der JSON-Datei zu lesen
+                with open(filename, 'r') as file:
+                    data = json.load(file)
+            except FileNotFoundError:
+                # Wenn die Datei nicht vorhanden ist, lege eine leere Liste an
+                data = []
+
+            # Füge den neuen Namen zur Liste hinzu
+            data.append({"name": new_name})
+
+            # Schreibe die aktualisierten Daten zurück in die JSON-Datei
+            with open(filename, 'w') as file:
+                json.dump(data, file, indent=2)
+
+        # Füge den neuen Namen zur JSON-Datei hinzu
+        add_name_to_json("data.json", first_name)
+
+        # Erstelle die Person und sende sie an die API
+        person = cls(first_name)
+        data = {"first_name": person.first_name}
+        data_json = json.dumps(data)
+        url = "http://localhost:5000/person/"  # Die URL für das Erstellen einer neuen Person
         try:
-            # Versuche, die vorhandenen Daten aus der JSON-Datei zu lesen
-            with open(filename, 'r') as file:
-                data = json.load(file)
-        except FileNotFoundError:
-            # Wenn die Datei nicht vorhanden ist, lege eine leere Liste an
-            data = []
-
-        # Füge den neuen Namen zur Liste hinzu
-        data.append({"name": new_name})
-
-        # Schreibe die aktualisierten Daten zurück in die JSON-Datei
-        with open(filename, 'w') as file:
-            json.dump(data, file, indent=2)
-
-    # Beispielaufruf
-    add_name_to_json("data.json", "API-User")
-
-
-    person = cls(first_name)
-    data = {"first_name": person.first_name}
-    data_json = json.dumps(data)
-    url = "http://localhost:5000/person/"  # Die URL für das Erstellen einer neuen Person
-    try:
-        response = requests.post(url, data=data_json)
-        if response.status_code == 200:
-            print("Person successfully created:", response.json())
-        else:
+            response = requests.post(url, data=data_json)
+            if response.status_code == 200:
+                print("Person successfully created:", response.json())
+            else:
                 print("Failed to create person:", response.text)
-    except requests.exceptions.RequestException as e:
-        print("Error:", e)
-	
-    create_person("Max")
-  
-   
+        except requests.exceptions.RequestException as e:
+            print("Error:", e)
+
+Person.put("Max")	
+Person.put("Maria")
+
     
 
 class Subject(Person):
