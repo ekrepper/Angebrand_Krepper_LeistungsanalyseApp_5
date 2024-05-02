@@ -65,7 +65,7 @@ class Person():
         person = cls(new_name)
         data = {"name": person.first_name}
         data_json = json.dumps(data)
-        url = "http://127.0.0.1:5000/person/create"  # Die URL für das Erstellen einer neuen Person
+        url = "http://localhost:5000/person/"  # Die URL für das Erstellen einer neuen Person
         try:
             response = requests.post(url, data=data_json)
             if response.status_code == 200:
@@ -108,9 +108,9 @@ class Subject(Person):
 
         # Sende die aktualisierten Daten an den API-Server
         try:
-            response = requests.put("http://127.0.0.1:5000/person/create", json=data)
+            response = requests.put("http://localhost:5000/person/", json=data)
             if response.status_code == 200:
-                print("E-Mail erfolgreich aktualisiert")
+                print("E-Mail erfolgreich aktualisiert:", response.json())
             else:
                 print("Fehler beim Aktualisieren der E-Mail-Adresse auf dem Server:", response.text)
         except requests.exceptions.RequestException as e:
