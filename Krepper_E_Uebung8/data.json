@@ -1,82 +1,51 @@
 [
   {
+    "name": "John",
+    "email": "john@email.at"
+  },
+  {
     "name": "Julian",
     "email": "julian@mail.at"
   },
   {
     "name": "Timmy",
-    "email": "timmyneu@neu.at"
+    "email": "timmy@neu.at"
+  },
+  {
+    "name": "Timmy",
+    "email": "timmy@neu.at"
   },
   {
     "name": "Frank",
-    "email": " frankyboy@newemail.at"
+    "email": "Frank@mail.at"
   },
   {
     "name": "Frankie",
-    "email": "frankie12345@ganzneu.at"
+    "email": "frankie@mail.at"
   },
   {
     "name": "Frankie"
   },
   {
     "name": "TestName",
-    "email": "test@NEU.com"
+    "email": "test@NEU.at"
   },
   {
     "name": "Testname2"
   },
   {
-    "name": "Max"
+    "name": "Thomas"
   },
   {
-    "name": "Felix"
+    "name": "Johannes"
   },
   {
-    "name": "Elisabeth"
+    "name": "Hanna"
   },
   {
-    "name": " Renate"
+    "name": "Greta"
   },
   {
-    "name": " Franz"
-  },
-  {
-    "name": " Ursula"
-  },
-  {
-    "name": " Ferdl"
-  },
-  {
-    "name": " Harald"
-  },
-  {
-    "name": " Greta"
-  },
-  {
-    "name": " Harry"
-  },
-  {
-    "name": " Manuel"
-  },
-  {
-    "name": " Sara"
-  },
-  {
-    "name": " Markus"
-  },
-  {
-    "name": " David"
-  },
-  {
-    "name": " Robert"
-  },
-  {
-    "name": " Hannelore"
-  },
-  {
-    "name": "Marianne"
-  },
-  {
-    "name": "Josef"
+    "name": "Susanne"
   }
 ]
