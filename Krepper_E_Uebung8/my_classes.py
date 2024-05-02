@@ -83,7 +83,7 @@ class Subject(Person):
         self.email = email
 
     def update_email(self, first_name, new_email):
-        # Laden der Daten aus der JSON-Datei
+    # Laden der Daten aus der JSON-Datei
         try:
             with open('data.json', 'r') as file:
                 data = json.load(file)
@@ -97,13 +97,14 @@ class Subject(Person):
             if person.get('name').strip() == first_name.strip():
                 if 'email' in person:
                     person['email'] = new_email
-                    updated = True
-                    break
+                else:
+                    person['email'] = new_email
+                updated = True
+                break
 
         # Wenn keine Übereinstimmung gefunden wurde, geben wir eine entsprechende Meldung aus
         if not updated:
-            print("Kein Eintrag für den angegebenen Namen gefunden oder keine E-Mail-Adresse vorhanden.")
-            return
+            print("Kein Eintrag für den angegebenen Namen gefunden.")
 
         # Speichern der aktualisierten Daten im JSON-File
         with open('data.json', 'w') as file:
@@ -111,13 +112,14 @@ class Subject(Person):
 
         # Senden der aktualisierten Daten an den API-Server
         try:
-            response = requests.put(f"http://localhost:5000/person/{first_name}", json={"email": new_email})
+            response = requests.put(f"http://localhost:5000/person/{first_name}", json={"name": first_name, "email": new_email})
             if response.status_code == 200:
                 print("E-Mail erfolgreich aktualisiert!")
             else:
                 print("Fehler beim Aktualisieren der E-Mail-Adresse auf dem Server:", response.text)
         except requests.exceptions.RequestException as e:
             print("Fehler:", e)
+
 
 # Benutzereingabe für den Vornamen und die neue E-Mail-Adresse
 first_name = input("Geben Sie den Vornamen ein:")

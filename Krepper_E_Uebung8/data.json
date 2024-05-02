@@ -12,21 +12,18 @@
     "email": "timmy@neu.at"
   },
   {
-    "name": "Timmy",
-    "email": "timmy@neu.at"
-  },
-  {
     "name": "Frank",
     "email": "Frank@mail.at"
   },
   {
     "name": "Frankie",
-    "email": "frankie@mail.at"
+    "email": "frankie@neu.at"
   },
   {
     "name": "Frankie"
   },
   {
+    "name": "TestName",
     "email": "test@NEU.com"
   },
   {
@@ -36,18 +33,6 @@
     "name": "Thomas"
   },
   {
-    "name": "Johannes"
-  },
-  {
-    "name": "Hanna"
-  },
-  {
-    "name": "Greta"
-  },
-  {
-    "name": "Susanne"
-  },
-  {
-    "name": "Gabriela"
+    "name": "Elisabeth"
   }
 ]
