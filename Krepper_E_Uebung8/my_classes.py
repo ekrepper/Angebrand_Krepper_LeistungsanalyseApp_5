@@ -157,11 +157,3 @@ class Experiment():
         with open(filename, 'w') as file:
             json.dump(self.__dict__, file)
 
-# Beispiel einer Person
-subject = Subject("Max", "Mustermann", "1990-01-01", "male")
-
-examiner = Examiner("Maria", "Musterfrau", "123456")
-
-# Speichere die Personen in JSON-Dateien
-subject.save("subject.json")
-examiner.save("examiner.json")
