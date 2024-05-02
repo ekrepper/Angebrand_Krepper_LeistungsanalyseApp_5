@@ -108,9 +108,9 @@ class Subject(Person):
 
         # Sende die aktualisierten Daten an den API-Server
         try:
-            response = requests.patch("http://localhost:5000/person/", json=data)
+            response = requests.put("http://localhost:5000/person/", json=data)
             if response.status_code == 200:
-                print("E-Mail erfolgreich aktualisiert:", response.json())
+                print("E-Mail erfolgreich aktualisiert!")
             else:
                 print("Fehler beim Aktualisieren der E-Mail-Adresse auf dem Server:", response.text)
         except requests.exceptions.RequestException as e:

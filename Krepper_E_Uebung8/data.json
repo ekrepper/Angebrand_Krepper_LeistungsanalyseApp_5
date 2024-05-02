@@ -20,7 +20,7 @@
   },
   {
     "name": "TestName",
-    "email": "test@NEU.at"
+    "email": "test@NEU.com"
   },
   {
     "name": "Testname2"
@@ -75,5 +75,8 @@
   },
   {
     "name": "Marianne"
+  },
+  {
+    "name": "Josef"
   }
 ]
